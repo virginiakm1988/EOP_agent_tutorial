@@ -98,13 +98,19 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
 
 ## 教學系列 — Agentic Engineering 速成課程
 
-本教學系列訓練博士生構建和維護 EOP Agent，採用雙層結構：
+本教學系列訓練博士生構建和維護 EOP Agent，採用雙層結構，並提供一個可選的暖身實驗。
+
+### 可選暖身
+
+| 實驗 | 標題 | 核心技能 |
+|------|------|----------|
+| **Lab 0** | 組裝最簡 EOP Agent 原型 (Build a Minimal EOP Agent Prototype) | 一步一步：環境設定 → EOP 工具（`annotate_artifact`、`link_to_claim`）→ prompt + LLM → 解析工具 → 執行。單輪 agent，無框架。（約 30–40 分鐘）|
 
 ### 基礎層（通用 Agentic 技能）
 
 | 實驗 | 標題 | 核心技能 |
 |------|------|----------|
-| Lab 1 | 決策的解剖 (The Anatomy of a Decision) | Prompt 結構 → 工具選擇準確度 |
+| Lab 1 | 決策的解剖 (The Anatomy of a Decision) | Prompt 結構 → 工具選擇準確度；**system prompt 設計**（角色、受眾、EOP 倡議與異議回應）|
 | Lab 2 | 工具的契約 (The Contract of a Tool) | Pydantic schema → 結構化工具呼叫 |
 | Lab 3 | 持久化的 Agent (The Persistent Agent) | 記憶與狀態 → 多輪對話一致性 |
 | Lab 4 | 圖、循環與恢復 (Graphs, Cycles & Recovery) | LangGraph → 帶錯誤恢復的編排工作流 |
@@ -119,7 +125,9 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
 ### 學習路徑
 
 ```
-基礎層:  Lab 1 → Lab 2 → Lab 3 → Lab 4
+暖身:     Lab 0（可選）
+              |
+基礎層:   Lab 1 → Lab 2 → Lab 3 → Lab 4
                                     |
 領域層:                        Lab 5 → Lab 6
 ```
@@ -130,11 +138,26 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
 
 ```
 ECM-Agent-tutorial/
-├── README.md                           # 英文版 (本文件的英文對照)
-├── README_zh.md                        # 中文版 (本文件)
-├── ROADMAP.md                          # 詳細學習路線圖
-├── EOP Agent.pdf                       # 來源論文
-├── Lab1_Anatomy_of_a_Decision.ipynb    # Lab 1 (Colab notebook)
+├── README.md                              # 英文版 (本文件的英文對照)
+├── README_zh.md                           # 中文版 (本文件)
+├── ROADMAP.md                             # 詳細學習路線圖
+├── Glossary.md                            # 術語定義 (英文)
+├── Glossary_zh.md                         # 術語定義 (中文)
+├── EOP Agent.pdf                          # 來源論文
+├── Lab0_Build_an_EOP_Agent_Prototype.md   # Lab 0 可選暖身
+├── Lab0_Build_an_EOP_Agent_Prototype.ipynb
+├── Lab1_Anatomy_of_a_Decision.md
+├── Lab1_Anatomy_of_a_Decision.ipynb       # Lab 1 — prompt 結構與 system prompt 設計
+├── Lab2_Contract_of_a_Tool.md
+├── Lab2_Contract_of_a_Tool.ipynb
+├── Lab3_The_Persistent_Agent.md
+├── Lab3_The_Persistent_Agent.ipynb
+├── Lab4_Graphs_Cycles_and_Recovery.md
+├── Lab4_Graphs_Cycles_and_Recovery.ipynb
+├── Lab5_Evidence_Chain_Extraction.md
+├── Lab5_Evidence_Chain_Extraction.ipynb
+├── Lab6_Claim_Contingent_Disclosure.md
+├── Lab6_Claim_Contingent_Disclosure.ipynb
 └── outlines/
     ├── Lab2_Contract_of_a_Tool.outline.md
     ├── Lab3_The_Persistent_Agent.outline.md

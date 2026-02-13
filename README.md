@@ -103,13 +103,19 @@ Assist researchers in writing and maintaining EOP/ECF-compliant code during acti
 
 ## Tutorial Series — Agentic Engineering Crash Course
 
-The tutorial series trains PhD students to build and maintain the EOP Agent. It follows a two-layer structure:
+The tutorial series trains PhD students to build and maintain the EOP Agent. It follows a two-layer structure, with an optional warm-up lab.
+
+### Optional Warm-up
+
+| Lab | Title | Core Skill |
+|-----|-------|------------|
+| **Lab 0** | Build a Minimal EOP Agent Prototype | Step-by-step: setup → EOP tools (`annotate_artifact`, `link_to_claim`) → prompt + LLM → parse tool → execute. Single-turn agent, no frameworks. (~30–40 min.) |
 
 ### Foundation Layer (Generic Agentic Skills)
 
 | Lab | Title | Core Skill |
 |-----|-------|------------|
-| Lab 1 | The Anatomy of a Decision | Prompt structure → tool selection accuracy |
+| Lab 1 | The Anatomy of a Decision | Prompt structure → tool selection accuracy; **system prompt design** (role, audience, EOP advocacy & objection handling) |
 | Lab 2 | The Contract of a Tool | Pydantic schemas → structured tool calls |
 | Lab 3 | The Persistent Agent | Memory & state → multi-turn coherence |
 | Lab 4 | Graphs, Cycles & Recovery | LangGraph → orchestrated workflows with error recovery |
@@ -124,7 +130,9 @@ The tutorial series trains PhD students to build and maintain the EOP Agent. It 
 ### Progression
 
 ```
-Foundation:  Lab 1 → Lab 2 → Lab 3 → Lab 4
+Warm-up:    Lab 0 (optional)
+                |
+Foundation: Lab 1 → Lab 2 → Lab 3 → Lab 4
                                         |
 Domain:                            Lab 5 → Lab 6
 ```
@@ -135,11 +143,26 @@ Domain:                            Lab 5 → Lab 6
 
 ```
 ECM-Agent-tutorial/
-├── README.md                           # This file (English)
-├── README_zh.md                        # Chinese version
-├── ROADMAP.md                          # Detailed learning roadmap
-├── EOP Agent.pdf                       # Source paper
-├── Lab1_Anatomy_of_a_Decision.ipynb    # Lab 1 (Colab notebook)
+├── README.md                              # This file (English)
+├── README_zh.md                           # Chinese version
+├── ROADMAP.md                             # Detailed learning roadmap
+├── Glossary.md                            # Term definitions (EN)
+├── Glossary_zh.md                         # Term definitions (ZH)
+├── EOP Agent.pdf                          # Source paper
+├── Lab0_Build_an_EOP_Agent_Prototype.md   # Lab 0 (optional warm-up)
+├── Lab0_Build_an_EOP_Agent_Prototype.ipynb
+├── Lab1_Anatomy_of_a_Decision.md
+├── Lab1_Anatomy_of_a_Decision.ipynb       # Lab 1 — prompt structure & system prompt design
+├── Lab2_Contract_of_a_Tool.md
+├── Lab2_Contract_of_a_Tool.ipynb
+├── Lab3_The_Persistent_Agent.md
+├── Lab3_The_Persistent_Agent.ipynb
+├── Lab4_Graphs_Cycles_and_Recovery.md
+├── Lab4_Graphs_Cycles_and_Recovery.ipynb
+├── Lab5_Evidence_Chain_Extraction.md
+├── Lab5_Evidence_Chain_Extraction.ipynb
+├── Lab6_Claim_Contingent_Disclosure.md
+├── Lab6_Claim_Contingent_Disclosure.ipynb
 └── outlines/
     ├── Lab2_Contract_of_a_Tool.outline.md
     ├── Lab3_The_Persistent_Agent.outline.md

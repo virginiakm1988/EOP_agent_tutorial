@@ -6,7 +6,7 @@
 
 ---
 
-## 前置概念（Before You Start）
+## Before You Start
 
 If you are new to LLMs and agents, these minimal concepts will help you follow the lab:
 
@@ -40,6 +40,7 @@ By the end of this lab you will be able to:
 1. **Relate** prompt layout and wording to which tool (or no-tool) the model selects.
 2. **Observe** that tool choice is a discrete decision over a finite set (logits over tool names/IDs).
 3. **Use** this to debug and improve EOP agent behavior when the wrong tool is chosen.
+4. **Design** a system prompt with role, audience, and EOP advocacy guidance (concept explanation and objection handling).
 
 ---
 
@@ -77,9 +78,83 @@ flowchart LR
 
 ---
 
+## 2.5 System Prompt Design: Role, Audience, and EOP Advocacy
+
+Before we use the system prompt only for **tool selection**, it helps to see what a **system message** is made of. In EOP agents, the same system prompt often does two jobs: (1) set the **role** and **audience** so the agent can *advocate* for EOP when the user asks conceptual questions; (2) list **tools** and **output format** so the agent can route to tools when the user asks for actions.
+
+### Anatomy of a system prompt
+
+| Element | Purpose | Example |
+|--------|---------|---------|
+| **Role** | Who the model "is" | "You are an EOP (Evidence-Oriented Programming) assistant helping researchers understand and adopt EOP/ECF." |
+| **Audience** | Who the model is talking to | "Your audience may be authors, reviewers, or editors; adapt depth to their experience." |
+| **Task / instructions** | What to do in general | "Explain EOP concepts when asked; when the user wants to annotate or link artifacts, use the provided tools." |
+| **Tools** (if any) | What actions are available | (We add this in the baseline below.) |
+| **Output format** | How to respond (e.g. TOOL: name) | "For tool use, reply with exactly one line: TOOL: &lt;name&gt;." |
+
+### EOP advocacy: example phrasing and objection handling
+
+When the user asks *"What is EOP?"* or *"How is this different from reproducibility?"*, the agent should answer in **natural language** (no tool call). You steer that by putting brief guidance in the system prompt:
+
+- **Concept**: "EOP focuses on *evidentiary sufficiency*: whether the disclosed software and data give enough information to evaluate the support for scientific claims. Reproducibility is about whether results can be reproduced; EOP is about whether claims are adequately supported by what is disclosed."
+- **Objection**: "If the user says 'This is too much overhead', acknowledge the concern and mention that EOP can be adopted incrementally (e.g. start with one pipeline and an entry document) and that structured disclosure can reduce ad-hoc reviewer requests."
+
+In a full EOP agent you might add tools like `get_eop_concept` or `get_example_case`; for this lab we focus on **how the system prompt text shapes both conversational answers and tool choice**.
+
+### Minimal advocacy system prompt (no tools yet)
+
+The following snippet builds a **pure advocacy** system prompt (no tool list). We send one user question and show that the model's reply is conditioned on this system message. Later we add tools to the same prompt.
+
+```python
+# Cell: Advocacy system prompt (role + audience + EOP guidance)
+
+def build_advocacy_system_prompt() -> str:
+    """System message for EOP advocacy: role, audience, and objection handling."""
+    return """You are an EOP (Evidence-Oriented Programming) assistant. You help researchers understand and adopt EOP/ECF for research software disclosure.
+
+Your audience may be authors, reviewers, or editors; adapt explanation depth to their experience.
+
+EOP focuses on evidentiary sufficiency: whether the disclosed software and data give enough information to evaluate the support for scientific claims. Reproducibility is about whether results can be reproduced; EOP is about whether claims are adequately supported by what is disclosed.
+
+If the user says adoption is "too much overhead", acknowledge the concern and mention that EOP can be adopted incrementally (e.g. start with one pipeline and an entry document) and that structured disclosure can reduce ad-hoc reviewer requests.
+
+Answer conceptual questions in 2–4 short sentences. Be precise and practical."""
+
+
+# Run once (requires client, MODEL from Setup below — run Setup cells first, then this cell)
+# Or run this after Setup to see advocacy-only behaviour.
+def ask_advocacy(user_message: str, system: str = None) -> str:
+    """One turn: system (advocacy) + user message -> assistant reply (no tools)."""
+    if system is None:
+        system = build_advocacy_system_prompt()
+    response = client.chat.completions.create(
+        model=MODEL,
+        temperature=0.3,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user_message},
+        ],
+        max_tokens=256,
+    )
+    return (response.choices[0].message.content or "").strip()
+
+
+# Example: run after Setup
+# reply = ask_advocacy("What is EOP? How is it different from reproducibility?")
+# print(reply)
+# reply2 = ask_advocacy("This seems like too much overhead for our lab.")
+# print(reply2)
+```
+
+**Note**: Run the **Setup** cells (Section 3) first so `client` and `MODEL` are defined; then run the cell above. **Observe**: The reply tone and content follow the role and guidance in the system prompt. Changing the system text (e.g. add "Be concise" or "Always mention the evidence chain") changes the distribution over replies — same idea as tool selection being conditioned on the prompt.
+
+---
+
 ## 3. Setup
 
 **Dependencies**: Python 3.10+, `openai`. No LangChain/LangGraph needed for this lab.
+
+**Using NVIDIA NIM**: To use the NVIDIA NIM API instead of OpenAI, set the environment variable `USE_NIM=1` (or set `NIM_API_KEY`) before running the setup cell. Optionally set `NIM_MODEL` to another NIM model ID (default: `nvidia/llama-3.3-nemotron-super-49b-v1.5`). The same pattern applies to all Labs 1–6.
 
 ### 3.1 Install and import
 
