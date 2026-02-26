@@ -34,6 +34,25 @@ By the end of this lab you will have built a program that:
 
 > **New pattern this lab — JSON parsing**: The model is asked to reply in JSON format so your code can parse it as a Python dictionary. The `json.loads()` function converts a JSON string into a dict. Some models wrap JSON in markdown code fences (` ```json ... ``` `); the code handles that automatically.
 
+> **The Evidence Chain: 7 ECF Artifact Types**
+>
+> ```
+>  ┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐
+>  │  #1       │    │  #2       │    │  #3       │    │  #4       │    │  #5       │    │  #6       │
+>  │  input    │──► │  exper.   │──► │  output   │──► │  visual   │──► │  plotting │──► │  visual   │
+>  │  data     │    │  process  │    │  data     │    │  data     │    │  process  │    │  claims   │
+>  │           │    │           │    │           │    │           │    │           │    │           │
+>  │samples.csv│    │ train.py  │    │ model.pt  │    │metrics.csv│    │  plot.py  │    │ Figure 1  │
+>  │(raw data) │    │(analysis) │    │(results)  │    │(for plots)│    │(fig code) │    │(in paper) │
+>  └───────────┘    └───────────┘    └───────────┘    └───────────┘    └───────────┘    └───────────┘
+>
+>  ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+>  │  #7 Documentation: spans the full chain  (README, per-step descriptions, entry document)         │
+>  └──────────────────────────────────────────────────────────────────────────────────────────────────┘
+>
+>  Your agent classifies files into these 7 types, then suggests restructuring.
+> ```
+
 ---
 
 ## How to use this tutorial in Google Colab

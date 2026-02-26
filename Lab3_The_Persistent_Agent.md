@@ -59,6 +59,38 @@ Concepts to keep in mind:
 
 **Maintenance connection**: Multi-turn EOP agent failures often trace to **lost context** — the agent "forgets" a prior tool result or user instruction because it was pushed out of the effective attention window or truncated. The first place to look is token count, history length, and whether critical facts are in a structured state object.
 
+> **Conversation history grows each turn (finite context window!):**
+>
+> ```
+>  Tokens │
+>   1040  │                                                ████  ← over limit!
+>   1000  │ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─(context limit)─
+>    870  │                                         ████
+>    690  │                                   ████
+>    510  │                             ████
+>    320  │                       ████
+>    150  │                 ████
+>         └─────────────────────────────────────────────────────────────
+>               Turn 1  Turn 2  Turn 3  Turn 4  Turn 5  Turn 6
+>
+>   ⚠  Summarize before hitting the limit!
+> ```
+>
+> **Implicit vs. Explicit State:**
+>
+> ```
+>  ┌───────────────────────────────┐    ┌────────────────────────────────┐
+>  │          IMPLICIT             │    │           EXPLICIT              │
+>  │  Raw conversation history     │    │  Structured dict / JSON         │
+>  │                               │    │                                 │
+>  │  ⚠ Can be "forgotten" as     │    │  ✓ Always available,            │
+>  │    context window fills       │    │    never truncated              │
+>  └───────────────────────────────┘    └────────────────────────────────┘
+>
+>  Rule: Put ticket IDs, counters, and critical values in EXPLICIT state.
+>  Use conversation history for context and natural language only.
+> ```
+
 ---
 
 ## 3. Setup

@@ -68,17 +68,26 @@ Concepts to keep in mind:
 
 ### Flow (context → tool choice)
 
-```mermaid
-flowchart LR
-  subgraph context [Context]
-    P[Prompt structure]
-    T[Tool definitions]
-    U[User message]
-  end
-  context --> Logits[Logits over tokens]
-  Logits --> Decode[Decode to tool name]
-  Decode --> Sel[Selected tool]
-```
+> **How prompt structure drives tool selection:**
+>
+> ```
+>  ┌────────────────────────┐
+>  │  Prompt structure      │ ──┐
+>  │  (order, format)       │   │
+>  └────────────────────────┘   │   ┌────────────────┐   ┌──────────────┐
+>                                ├──►│      LLM       │──►│   Selected   │
+>  ┌────────────────────────┐   │   │   (logits)     │   │    Tool      │
+>  │  Tool definitions      │ ──┤   └────────────────┘   └──────────────┘
+>  │  (names, descriptions) │   │          decode
+>  └────────────────────────┘   │
+>                                │
+>  ┌────────────────────────┐   │
+>  │  User message          │ ──┘
+>  │  (clear vs. vague)     │
+>  └────────────────────────┘
+>
+>  Change any input → different tool may be selected
+> ```
 
 ---
 
@@ -273,8 +282,22 @@ print("Raw response :", result["raw_response"])
 print("Parsed tool  :", result["parsed_tool"])
 ```
 
-**Expected output**: `TOOL: get_weather`. The prompt is clear, the user query unambiguously matches one tool, and temperature is 0 (deterministic).  
+**Expected output**: `TOOL: get_weather`. The prompt is clear, the user query unambiguously matches one tool, and temperature is 0 (deterministic).
 **Record**: Note the parsed tool. This is our **control** result.
+
+> **Temperature → Tool Selection Consistency** (lower = more predictable):
+>
+> ```
+>  Temp │ % of runs that vary
+>  ─────┼──────────────────────────────────────────────────────
+>   0.0 │ █  2%    ← use this for reliable tool routing
+>   0.3 │ ████ 12%
+>   0.7 │ ████████████████ 38%
+>   1.0 │ ████████████████████████████ 60%
+>   1.5 │ ██████████████████████████████████████████ 85%
+>  ─────┴──────────────────────────────────────────────────────
+>            ▲ noticeable variance threshold at ~30%
+> ```
 
 ---
 

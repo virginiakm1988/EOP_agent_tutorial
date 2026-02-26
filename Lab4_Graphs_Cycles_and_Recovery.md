@@ -122,13 +122,31 @@ Before writing code, it helps to see *why* we model the agent as a graph:
 
 A minimal agent flow looks like this:
 
-```mermaid
-flowchart LR
-  Start((Start)) --> route[route]
-  route --> execute[execute]
-  execute --> respond[respond]
-  respond --> End((END))
-```
+> **Agent Workflow Graphs:**
+>
+> ```
+>  Baseline (Linear Flow)                    With Retry & Fallback
+>  ──────────────────────────                ────────────────────────────────────
+>
+>          [START]                                      [START]
+>             │                                            │
+>             ▼                                            ▼
+>         [route]                              ┌──────► [route]
+>      (LLM picks tool)                        │      (LLM picks tool)
+>             │                                │            │
+>             ▼                                │            ▼
+>         [execute]                            │        [execute]
+>         (run tool)                           │            │
+>             │                                └── fail &   ├── success ──► [respond]
+>             ▼                                    retry    │               (format result)
+>         [respond]                                < max    │                    │
+>      (format result)                                      │ max retries        ▼
+>             │                                             │ exhausted     [fallback]
+>             ▼                                             └──────────► (canned message)
+>           [END]                                                              │
+>                                                                              ▼
+>  If execute fails → no recovery!                                           [END]
+> ```
 
 We define a minimal graph:
 

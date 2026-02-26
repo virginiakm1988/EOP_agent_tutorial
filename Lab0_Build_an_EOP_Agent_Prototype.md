@@ -40,6 +40,18 @@ By the end of this lab you will have a **single-turn EOP agent** that:
 
 No frameworks (LangChain/LangGraph) — just prompt, LLM call, parse, and execute. This matches the idea from the EOP paper: *AI agents might assist researchers in identifying and annotating evidentiary artifacts during software development*.
 
+> **How your agent works — at a glance:**
+>
+> ```
+>  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+>  │ User Message │ ──► │ Build Prompt │ ──► │  LLM  Call   │ ──► │ Parse output │ ──► │ Execute Tool │ ──► │Return Result │
+>  │              │     │(system+user) │     │  (API call)  │     │ "TOOL: name" │     │  (function)  │     │  to caller   │
+>  └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+> ```
+>
+> Each box is one step in `run_eop_agent()`. Labs 1–4 zoom into each step in detail.
+
+
 ---
 
 ## How to Use This Tutorial

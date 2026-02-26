@@ -63,6 +63,15 @@ Malformed tool calls (wrong type, missing required field, invalid enum value) ar
 >
 > No prior experience with Pydantic is needed — the lab introduces it step by step.
 
+> **How Pydantic catches bad tool arguments before they break your code:**
+>
+> ```
+>  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+>  │  LLM Output  │──► │ json.loads() │──► │   Pydantic   │──► (valid)   ✓ Run tool safely
+>  │ (JSON string)│    │  Parse JSON  │    │  .validate() │
+>  └──────────────┘    └──────────────┘    └──────────────┘──► (invalid) ✗ ValidationError → log & handle
+> ```
+
 ```python
 # Cell: Install dependencies
 !pip install -q openai pydantic

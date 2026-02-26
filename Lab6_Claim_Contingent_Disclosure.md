@@ -26,6 +26,31 @@ This lab teaches you to build an AI advisor that reads a claim and recommends **
 > | `standard` | Code + data + docs — enough for someone else to reproduce it |
 > | `full` | Everything — multiple runs, seeds, environments — enough to verify reliability |
 
+> **Claim Strength → Disclosure Scope:**
+>
+> ```
+>  Which scope fits which claim?
+>
+>                        minimal        standard         full
+>                     ─────────────┬──────────────┬─────────────
+>  existential         ✓ Best fit  │  Good fit    │  Low fit
+>  ("we can do X")                 │              │
+>  ───────────────────────────────────────────────────────────
+>  distributional       ✗ Low fit  │  Good fit    │  ✓ Best fit
+>  ("reliably does X")             │              │
+>
+>  What each scope includes:
+>  ┌──────────────────────────────────────────────────────────────────────┐
+>  │ [minimal]  · One runnable path  · Key code only  · One result        │
+>  ├──────────────────────────────────────────────────────────────────────┤
+>  │ [standard] · Code + data + docs · Enough to reproduce + slightly vary│
+>  ├──────────────────────────────────────────────────────────────────────┤
+>  │ [full]     · Multiple runs/seeds/splits · Full env · All ablations   │
+>  └──────────────────────────────────────────────────────────────────────┘
+>
+>  Rule of thumb: stronger claim → wider disclosure. Default: "standard".
+> ```
+
 By the end of this lab you will have built an AI tool that takes a claim description and outputs the recommended claim strength and disclosure level with a brief explanation.
 
 ---
