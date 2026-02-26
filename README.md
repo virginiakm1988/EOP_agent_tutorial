@@ -101,6 +101,12 @@ Assist researchers in writing and maintaining EOP/ECF-compliant code during acti
 
 ---
 
+## New to AI? Start Here
+
+If you have a CS background but no prior AI/ML experience, start with **[GETTING_STARTED.md](GETTING_STARTED.md)** — it covers everything you need before opening your first notebook: how to get an API key, how to run the labs, and plain-English explanations of every concept you'll encounter.
+
+---
+
 ## Tutorial Series — Agentic Engineering Crash Course
 
 The tutorial series trains PhD students to build and maintain the EOP Agent. It follows a two-layer structure, with an optional warm-up lab.

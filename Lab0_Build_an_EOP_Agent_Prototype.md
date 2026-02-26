@@ -1,9 +1,32 @@
 # Lab 0: Build a Minimal EOP Agent Prototype — Step by Step
 
-**Series**: Agentic Engineering Crash Course (EOP focus)  
-**Goal**: Assemble the simplest agent that understands “evidence-oriented” actions and chooses a tool to help researchers annotate or link artifacts.  
-**Prerequisites**: Python 3.10+, OpenAI API key (or NVIDIA NIM).  
+**Series**: Agentic Engineering Crash Course (EOP focus)
+**Goal**: Assemble the simplest agent that understands “evidence-oriented” actions and chooses a tool to help researchers annotate or link artifacts.
+**Prerequisites**: Python 3.10+, OpenAI API key (or NVIDIA NIM).
 **Time**: ~30–40 min.
+
+---
+
+## What Is This Tutorial About? (Plain English)
+
+Imagine a research scientist writes code to run an experiment — they produce input data, run scripts, and generate figures for a paper. **Evidence-Oriented Programming (EOP)** is a way of organizing that code so that every figure or claim in the paper can be traced back to the exact data and code that produced it.
+
+This tutorial teaches you to build an **AI agent** that helps researchers do that tracing automatically. The agent reads what a researcher is asking (e.g. “tag this file as input data”) and picks the right action to take.
+
+**You don't need any AI or machine learning background.** If you know Python, you can follow along. Every AI concept is explained as you go. Unfamiliar terms are defined in [Glossary](Glossary.md).
+
+---
+
+## What You Will Accomplish (Step by Step)
+
+By the end of this lab you will have written a Python program that:
+
+1. Connects to an AI model (via API)
+2. Reads a researcher's request
+3. Picks one of two actions: “annotate an artifact” or “link to a claim”
+4. Runs that action and returns a result
+
+That's it. No magic — just a prompt, an API call, a parser, and a function.
 
 ---
 
@@ -30,7 +53,16 @@ For terms (prompt, tool call, LLM), see [Glossary](Glossary.md).
 
 ## Step 1: Setup
 
-Install the client and load your API key. Same pattern as Lab 1 (OpenAI or NVIDIA NIM).
+> **Getting an API key**
+>
+> You need an API key to send requests to an AI model. Two options:
+>
+> - **OpenAI** (recommended for beginners): Sign up at [platform.openai.com](https://platform.openai.com), add a small credit ($5 is enough for all 6 labs), and copy your API key from the dashboard.
+> - **NVIDIA NIM** (free tier available for NVIDIA employees/researchers): Use your NIM API key and set `USE_NIM=1` in your environment.
+>
+> Keep your API key secret — never paste it directly into a shared notebook or commit it to git.
+
+Install the client and load your API key. The same setup pattern is used across all labs in this series.
 
 ```python
 # Cell: Install

@@ -49,6 +49,20 @@ Malformed tool calls (wrong type, missing required field, invalid enum value) ar
 
 **Dependencies**: Python 3.10+, `openai`, `pydantic`.
 
+> **What is Pydantic?**
+>
+> Pydantic is a Python library that lets you define the *shape* of your data using normal Python classes and type annotations. When data comes in, Pydantic automatically checks that it matches the shape — and raises a clear error if it doesn't.
+>
+> Example: instead of manually checking `if not isinstance(city, str): raise ValueError(...)`, you write:
+> ```python
+> from pydantic import BaseModel
+> class GetWeather(BaseModel):
+>     city: str
+> ```
+> Now `GetWeather(city=123)` raises a `ValidationError` automatically. In this lab, we use Pydantic to define what arguments each AI tool expects, so bad outputs from the model are caught before they reach your code.
+>
+> No prior experience with Pydantic is needed — the lab introduces it step by step.
+
 ```python
 # Cell: Install dependencies
 !pip install -q openai pydantic

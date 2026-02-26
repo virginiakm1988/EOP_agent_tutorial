@@ -52,7 +52,11 @@ By the end of this lab you will be able to:
 
 Tool selection is a **conditional decoding step**: the model produces logits over the next tokens; when the interface is "tool call," those tokens map to tool names or a tool-call schema. The prompt is the conditioning context; its structure (order of system vs. user message, placement of tool definitions, few-shot examples, and delimiter clarity) changes the effective context and thus the distribution over next tokens.
 
-$$P(\text{tool} \mid \text{prompt})$$
+In plain English: **the model doesn't "know" which tool to pick — it calculates a probability for each option, and your prompt is what shifts those probabilities.** You can write this as:
+
+> P(tool | prompt) — "the probability of choosing a tool, given what's in the prompt"
+
+The better your prompt describes when to use each tool, the higher the probability the model picks the right one. That's what this lab trains you to observe and improve.
 
 Concepts to keep in mind:
 
@@ -153,6 +157,12 @@ def ask_advocacy(user_message: str, system: str = None) -> str:
 ## 3. Setup
 
 **Dependencies**: Python 3.10+, `openai`. No LangChain/LangGraph needed for this lab.
+
+> **Don't have an API key yet?**
+> - **OpenAI**: Sign up at [platform.openai.com](https://platform.openai.com), go to **API Keys**, and create one. Add a small credit ($5 covers all 6 labs). The key looks like `sk-...`.
+> - **NVIDIA NIM**: If you have a NIM account, copy your key from the NIM dashboard and set `USE_NIM=1`.
+>
+> The code below will prompt you to paste your key securely using `getpass` — it won't show on screen and won't be saved in the notebook.
 
 **Using NVIDIA NIM**: To use the NVIDIA NIM API instead of OpenAI, set the environment variable `USE_NIM=1` (or set `NIM_API_KEY`) before running the setup cell. Optionally set `NIM_MODEL` to another NIM model ID (default: `nvidia/llama-3.3-nemotron-super-49b-v1.5`). The same pattern applies to all Labs 1–6.
 
