@@ -55,12 +55,20 @@ By the end of this lab you will have built an AI tool that takes a claim descrip
 
 ---
 
-## How to use this tutorial in Google Colab
+## How to Run This Lab
 
-1. Open [Google Colab](https://colab.research.google.com/) and create a new notebook.
-2. For each **markdown section** below: insert a **Text cell** and paste the section.
-3. For each **code block**: insert a **Code cell** and paste the code, then run.
-4. Run cells in order from top to bottom.
+**Recommended — open directly in Google Colab** (one click, no copy-paste):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab6_Claim_Contingent_Disclosure.ipynb)
+
+**Or clone the whole repo** into Colab (gets all labs at once) — add a code cell and run:
+
+```bash
+!git clone https://github.com/virginiakm1988/EOP_agent_tutorial.git
+%cd EOP_agent_tutorial
+```
+
+Open any `.ipynb` from the file panel on the left, then run cells top to bottom.
 
 **Suggested time**: 45–60 min.  
 **Experiments**: Baseline (required). Exploration: Experiments 1–2 required; Experiment 3 optional.

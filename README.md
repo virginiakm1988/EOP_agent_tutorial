@@ -101,6 +101,23 @@ Assist researchers in writing and maintaining EOP/ECF-compliant code during acti
 
 ---
 
+## Open in Colab
+
+Click any badge to open the lab directly in Google Colab — no download or setup needed.
+
+| Lab | Open |
+|-----|------|
+| Lab 0 — EOP Agent Prototype | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab0_Build_an_EOP_Agent_Prototype.ipynb) |
+| Lab 1 — Anatomy of a Decision | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab1_Anatomy_of_a_Decision.ipynb) |
+| Lab 2 — Contract of a Tool | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab2_Contract_of_a_Tool.ipynb) |
+| Lab 3 — The Persistent Agent | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab3_The_Persistent_Agent.ipynb) |
+| Lab 4 — Graphs, Cycles & Recovery | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab4_Graphs_Cycles_and_Recovery.ipynb) |
+| Lab 5 — Evidence Chain Extraction | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab5_Evidence_Chain_Extraction.ipynb) |
+| Lab 6 — Claim-contingent Disclosure | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab6_Claim_Contingent_Disclosure.ipynb) |
+| Lab 7 — EOP Spokesperson | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab7_EOP_Spokesperson.ipynb) |
+
+---
+
 ## New to AI? Start Here
 
 If you have a CS background but no prior AI/ML experience, start with **[GETTING_STARTED.md](GETTING_STARTED.md)** — it covers everything you need before opening your first notebook: how to get an API key, how to run the labs, and plain-English explanations of every concept you'll encounter.

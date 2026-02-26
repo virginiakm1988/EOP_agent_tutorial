@@ -54,10 +54,20 @@ No frameworks (LangChain/LangGraph) — just prompt, LLM call, parse, and execut
 
 ---
 
-## How to Use This Tutorial
+## How to Run This Lab
 
-- **Notebook**: Open `Lab0_Build_an_EOP_Agent_Prototype.ipynb` in Jupyter or Google Colab and run cells in order.
-- **Markdown**: Alternatively, copy sections from this `.md` file into a new notebook or a `.py` file and run top to bottom.
+**Recommended — open directly in Google Colab** (one click, no copy-paste):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab0_Build_an_EOP_Agent_Prototype.ipynb)
+
+**Or clone the whole repo** into Colab (gets all labs at once) — add a code cell and run:
+
+```bash
+!git clone https://github.com/virginiakm1988/EOP_agent_tutorial.git
+%cd EOP_agent_tutorial
+```
+
+Open any `.ipynb` from the file panel on the left, then run cells top to bottom.
 
 For terms (prompt, tool call, LLM), see [Glossary](Glossary.md).
 

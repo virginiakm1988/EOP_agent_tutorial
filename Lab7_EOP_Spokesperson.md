@@ -49,12 +49,20 @@ By the end of this lab you will have:
 
 ---
 
-## How to Use This Tutorial in Google Colab
+## How to Run This Lab
 
-1. Open [Google Colab](https://colab.research.google.com/) and create a new notebook.
-2. For each **markdown section**: insert a **Text cell** and paste it.
-3. For each **code block**: insert a **Code cell**, paste the code, and run.
-4. Run cells in order from top to bottom.
+**Recommended — open directly in Google Colab** (one click, no copy-paste):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab7_EOP_Spokesperson.ipynb)
+
+**Or clone the whole repo** into Colab (gets all labs at once) — add a code cell and run:
+
+```bash
+!git clone https://github.com/virginiakm1988/EOP_agent_tutorial.git
+%cd EOP_agent_tutorial
+```
+
+Open any `.ipynb` from the file panel on the left, then run cells top to bottom.
 
 **Suggested time**: 60–75 min.
 **Experiments**: Baseline + Experiments 1–4 required. Experiment 5 optional.
