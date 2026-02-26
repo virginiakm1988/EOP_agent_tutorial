@@ -29,13 +29,16 @@ COLAB_NOTEBOOK_METADATA = {
 def md_to_cells(md_text: str) -> list[dict]:
     """Split markdown content into alternating markdown and code cells."""
     cells = []
-    # Split by ```python ... ``` or ``` ... ``` (code blocks)
-    pattern = re.compile(r"^```(?:python)?\s*\n(.*?)\n```", re.MULTILINE | re.DOTALL)
+    # Only match ```python ... ``` blocks (require explicit 'python' tag so that
+    # bare ``` fences used in Mermaid diagrams and other non-Python blocks are left
+    # as markdown and do not cascade cell-type mismatches).
+    # Closing fence must be ``` on a line by itself (^```[ \t]*$).
+    pattern = re.compile(r"^```python[ \t]*\n(.*?)\n^```[ \t]*$", re.MULTILINE | re.DOTALL)
     last_end = 0
     for match in pattern.finditer(md_text):
-        # Markdown before this code block (exclude any trailing ``` or ```python from previous block boundary)
+        # Markdown before this code block
         before = md_text[last_end : match.start()]
-        before = re.sub(r"\s*```(?:python)?\s*\n?$", "", before).strip()
+        before = re.sub(r"\s*```python[ \t]*\n?$", "", before).strip()
         if before:
             cells.append({"cell_type": "markdown", "metadata": {}, "source": to_source(before)})
         # Code block
@@ -91,6 +94,7 @@ def convert_lab(md_name: str) -> None:
 
 def main():
     labs = [
+        "Lab0_Build_an_EOP_Agent_Prototype.md",
         "Lab1_Anatomy_of_a_Decision.md",
         "Lab2_Contract_of_a_Tool.md",
         "Lab3_The_Persistent_Agent.md",
