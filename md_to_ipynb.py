@@ -101,6 +101,7 @@ def main():
         "Lab4_Graphs_Cycles_and_Recovery.md",
         "Lab5_Evidence_Chain_Extraction.md",
         "Lab6_Claim_Contingent_Disclosure.md",
+        "Lab7_EOP_Spokesperson.md",
     ]
     for lab in labs:
         convert_lab(lab)
