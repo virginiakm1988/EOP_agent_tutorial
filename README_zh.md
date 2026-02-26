@@ -96,6 +96,23 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
 
 ---
 
+## 在 Colab 中開啟
+
+點擊任意徽章即可直接在 Google Colab 開啟對應實驗，無需下載或額外設定。
+
+| 實驗 | 開啟 |
+|------|------|
+| Lab 0 — EOP Agent 原型 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab0_Build_an_EOP_Agent_Prototype.ipynb) |
+| Lab 1 — 決策的解剖 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab1_Anatomy_of_a_Decision.ipynb) |
+| Lab 2 — 工具的契約 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab2_Contract_of_a_Tool.ipynb) |
+| Lab 3 — 持久化的 Agent | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab3_The_Persistent_Agent.ipynb) |
+| Lab 4 — 圖、循環與恢復 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab4_Graphs_Cycles_and_Recovery.ipynb) |
+| Lab 5 — 證據鏈提取 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab5_Evidence_Chain_Extraction.ipynb) |
+| Lab 6 — 主張相依揭露 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab6_Claim_Contingent_Disclosure.ipynb) |
+| Lab 7 — EOP 倡議代言人 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/virginiakm1988/EOP_agent_tutorial/blob/main/Lab7_EOP_Spokesperson.ipynb) |
+
+---
+
 ## 教學系列 — Agentic Engineering 速成課程
 
 本教學系列訓練博士生構建和維護 EOP Agent，採用雙層結構，並提供一個可選的暖身實驗。
@@ -121,6 +138,7 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
 |------|------|----------|
 | Lab 5 | 證據鏈提取 (Evidence Chain Extraction) | 給定一個混亂的研究程式庫，辨識 ECF 的七個產物並建議重組方案 |
 | Lab 6 | 主張相依揭露 (Claim-contingent Disclosure) | 給定不同強度的科學主張，判斷所需的揭露範圍 |
+| Lab 7 | EOP 倡議代言人 (EOP Spokesperson) | 提示工程：設計跨領域 EOP 倡議 prompt；針對不同學科背景（生物、化學、數學、CS）與利益相關者角色（作者、審稿人、編輯、資助方）調適訊息；LLM-as-judge 評估說服力 |
 
 ### 學習路徑
 
@@ -129,7 +147,7 @@ EOP Agent 協助研究者理解、採用並實作符合 EOP/ECF 規範的研究�
               |
 基礎層:   Lab 1 → Lab 2 → Lab 3 → Lab 4
                                     |
-領域層:                        Lab 5 → Lab 6
+領域層:                        Lab 5 → Lab 6 → Lab 7
 ```
 
 ---
@@ -158,6 +176,8 @@ ECM-Agent-tutorial/
 ├── Lab5_Evidence_Chain_Extraction.ipynb
 ├── Lab6_Claim_Contingent_Disclosure.md
 ├── Lab6_Claim_Contingent_Disclosure.ipynb
+├── Lab7_EOP_Spokesperson.md
+├── Lab7_EOP_Spokesperson.ipynb
 └── outlines/
     ├── Lab2_Contract_of_a_Tool.outline.md
     ├── Lab3_The_Persistent_Agent.outline.md
