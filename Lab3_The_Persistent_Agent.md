@@ -1,8 +1,24 @@
 # Lab 3: The Persistent Agent — Memory, State, and Multi-Turn Coherence
 
-**Series**: Agentic Engineering Crash Course  
-**Module**: 3 — Memory & State (Managing Context Persistence)  
-**Prerequisites**: Lab 1 and Lab 2 (or familiarity with tool selection and Pydantic tools), Python 3.10+, OpenAI API key  
+**Series**: Agentic Engineering Crash Course
+**Module**: 3 — Memory & State (Managing Context Persistence)
+**Prerequisites**: Lab 1 and Lab 2 (or familiarity with tool selection and Pydantic tools), Python 3.10+, OpenAI API key
+
+---
+
+## What You Will Build (Plain English)
+
+In Labs 1 and 2 you built agents that handle **one request at a time**. But real conversations have multiple turns — the user says something, you respond, they follow up, and so on. This lab teaches you how agents handle that.
+
+Here's the key insight: **an AI model has no memory between calls.** Every time you call the API, it starts fresh. "Memory" in an agent is an illusion — you create it by sending the full conversation history with each new request.
+
+By the end of this lab you will have built an agent that:
+1. Keeps track of everything said so far (conversation history)
+2. Measures how much memory is being used (token counting)
+3. Compresses old history when it gets too long (summarization)
+4. Stores important values in a structured state object that never gets lost
+
+> **New library this lab — `tiktoken`**: A tool from OpenAI that counts how many tokens (units of text) your messages use. Think of it as a word counter, but more precise. It helps you check whether your conversation is approaching the model's memory limit.
 
 ---
 
@@ -33,7 +49,7 @@ By the end of this lab you will be able to:
 
 ### Mechanism
 
-LLMs are **stateless functions**: \( f(\text{prompt}) \to \text{completion} \). All "memory" is an illusion created by including prior messages in the prompt. There is no persistent state inside the model; every turn is conditioned only on what you send.
+LLMs are **stateless functions** — every call is independent: you send a prompt in, you get a completion out. There is no persistent state inside the model. All "memory" is an illusion created by including prior messages in the prompt you send. Every turn is conditioned only on what you send in that request.
 
 Concepts to keep in mind:
 
@@ -48,6 +64,10 @@ Concepts to keep in mind:
 ## 3. Setup
 
 **Dependencies**: Python 3.10+, `openai`, `tiktoken` (for token counting).
+
+> **Returning student reminder**: You need the same API key from Labs 1–2. If you're starting fresh, see [GETTING_STARTED.md](GETTING_STARTED.md) for setup instructions.
+>
+> **What is `tiktoken`?** It's a Python library that counts tokens — the units of text that the model reads. Use it to check "how much memory am I using?" before you hit the model's limit. Install it once and it works automatically.
 
 ```python
 # Cell: Install dependencies

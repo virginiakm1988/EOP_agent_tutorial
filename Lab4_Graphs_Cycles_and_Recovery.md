@@ -1,8 +1,23 @@
 # Lab 4: Graphs, Cycles & Recovery — LangGraph and Flow Logic
 
-**Series**: Agentic Engineering Crash Course  
-**Module**: 4 — LangGraph / Flow Logic (Handling Cycles and Error Recovery)  
-**Prerequisites**: Labs 1–3 (prompt structure, Pydantic tools, multi-turn state), Python 3.10+, OpenAI API key  
+**Series**: Agentic Engineering Crash Course
+**Module**: 4 — LangGraph / Flow Logic (Handling Cycles and Error Recovery)
+**Prerequisites**: Labs 1–3 (prompt structure, Pydantic tools, multi-turn state), Python 3.10+, OpenAI API key
+
+---
+
+## What You Will Build (Plain English)
+
+Labs 1–3 built individual agent capabilities: picking a tool, validating arguments, remembering context. This lab puts them together into a **workflow** — a structured sequence of steps where the agent can retry on failure, take different paths depending on what happened, and escalate to a human when stuck.
+
+The workflow is represented as a **graph**: a diagram of boxes (actions) connected by arrows (transitions). This is not a neural network — it's just a flowchart you write in code.
+
+> **New library this lab — LangGraph and LangChain**:
+>
+> - **LangChain** (`langchain-openai`, `langchain-core`): A Python library that wraps LLM API calls in a consistent interface. Instead of calling `client.chat.completions.create(...)` directly, you call `llm.invoke(messages)`. Same result, less boilerplate.
+> - **LangGraph** (`langgraph`): A library built on top of LangChain that lets you define agent workflows as graphs (nodes + edges). Each node is a Python function; edges define which node runs next. It handles state passing between nodes automatically.
+>
+> **New Python pattern — `TypedDict`**: A way to define a dictionary with named, typed keys. Used here to define what data the graph passes between nodes (e.g. `AgentState` holds messages, retry count, and last tool result). Think of it as a structured container that flows through the graph.
 
 ---
 
@@ -49,6 +64,14 @@ Concepts to keep in mind:
 ## 3. Setup
 
 **Dependencies**: Python 3.10+, `openai`, `langgraph`, `langchain-core`, `langchain-openai`.
+
+> **Why four packages?**
+> - `openai` — the base API client (same as Labs 1–3)
+> - `langchain-openai` — LangChain's wrapper for OpenAI (gives us `ChatOpenAI`)
+> - `langchain-core` — shared data types used across LangChain (e.g. `AIMessage`, `HumanMessage`)
+> - `langgraph` — the graph engine that runs our agent workflow
+>
+> You only need to install these once. If you're in Colab, run the install cell first.
 
 ```python
 # Cell: Install dependencies

@@ -1,10 +1,38 @@
 # Lab 5: Evidence Chain Extraction — Identifying ECF Artifacts in a Research Repo
 
-**Series**: Agentic Engineering Crash Course (Domain Layer)  
-**Module**: EOP/ECF — Restructure Code (Evidence Chain Extraction)  
-**Prerequisites**: Labs 1–4 (foundation layer), Python 3.10+, OpenAI API key, familiarity with EOP/ECF concepts  
+**Series**: Agentic Engineering Crash Course (Domain Layer)
+**Module**: OOP/ECF — Restructure Code (Evidence Chain Extraction)
+**Prerequisites**: Labs 1–4 (foundation layer), Python 3.10+, OpenAI API key, familiarity with EOP/ECF concepts
 
 This lab uses **single LLM calls** (and optional tools) to do ECF classification and restructuring. In a full EOP agent, you can wrap this logic as **one tool or one graph node** and plug it into the Lab 4 graph (e.g. a "classify_and_restructure" node or tool that the router can call).
+
+---
+
+## What You Will Build (Plain English)
+
+Imagine a researcher has a folder of Python scripts, CSV files, and figures — but they're all mixed together with no clear organization. This lab teaches you to use an AI model to look at that folder and say: "this file is input data, this script is an analysis process, this figure is a visual claim."
+
+That classification is the first step toward making the research software reviewable and traceable — the core goal of EOP.
+
+By the end of this lab you will have built a program that:
+1. Takes a list of files and their descriptions
+2. Asks an AI model to classify each one into one of seven ECF artifact types
+3. Asks the model to suggest how to reorganize them into a cleaner folder structure
+4. Asks the model to order the analysis scripts into a logical run sequence
+
+> **Quick recap of the seven ECF artifact types** (from Lab 0/README):
+>
+> | Type | Plain English |
+> |------|--------------|
+> | `input_data` | The raw data you start with |
+> | `experimental_process` | Scripts that transform input into output |
+> | `output_data` | Results produced by those scripts |
+> | `visual_data` | Data specifically prepared for plotting |
+> | `plotting_process` | Scripts that make figures or tables |
+> | `visual_claims` | The actual figures/tables that appear in the paper |
+> | `documentation` | README files and run instructions |
+
+> **New pattern this lab — JSON parsing**: The model is asked to reply in JSON format so your code can parse it as a Python dictionary. The `json.loads()` function converts a JSON string into a dict. Some models wrap JSON in markdown code fences (` ```json ... ``` `); the code handles that automatically.
 
 ---
 

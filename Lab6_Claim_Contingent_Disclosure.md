@@ -1,8 +1,32 @@
 # Lab 6: Claim-Contingent Disclosure — Disclosure Scope and Claim Strength
 
-**Series**: Agentic Engineering Crash Course (Domain Layer)  
-**Module**: EOP/ECF — Coding Assistant (Claim-contingent Scope Advice)  
-**Prerequisites**: Labs 1–5, Python 3.10+, OpenAI API key, familiarity with EOP/ECF and scientific claims  
+**Series**: Agentic Engineering Crash Course (Domain Layer)
+**Module**: EOP/ECF — Coding Assistant (Claim-contingent Scope Advice)
+**Prerequisites**: Labs 1–5, Python 3.10+, OpenAI API key, familiarity with EOP/ECF and scientific claims
+
+---
+
+## What You Will Build (Plain English)
+
+When a researcher publishes a paper, they make **claims** — statements like "our model achieves 95% accuracy" or "our method works reliably across different datasets." Different claims require different amounts of supporting evidence to be credible.
+
+This lab teaches you to build an AI advisor that reads a claim and recommends **how much code and data should be disclosed** to support it. The stronger the claim, the more evidence is needed.
+
+> **Two claim types — plain English**:
+>
+> - **Existential claim**: "We showed it's *possible* to achieve X." A single result is enough to support this. Example: "We trained a model that reached 95% accuracy." You need to disclose: the key code and one result. *(Think: showing it happened once.)*
+>
+> - **Distributional claim**: "Our method *reliably* achieves X." This needs many results to be credible. Example: "Our method consistently achieves 95% accuracy across 10 random seeds." You need to disclose: full training code, multiple run results, seeds, splits. *(Think: showing it happens consistently.)*
+>
+> **Three disclosure levels**:
+>
+> | Level | What to share |
+> |-------|--------------|
+> | `minimal` | One runnable path + key result — enough to verify it happened |
+> | `standard` | Code + data + docs — enough for someone else to reproduce it |
+> | `full` | Everything — multiple runs, seeds, environments — enough to verify reliability |
+
+By the end of this lab you will have built an AI tool that takes a claim description and outputs the recommended claim strength and disclosure level with a brief explanation.
 
 ---
 
